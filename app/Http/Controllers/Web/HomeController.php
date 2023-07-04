@@ -16,6 +16,15 @@ class HomeController extends Controller
         {
             $slider->value = json_decode($slider->value);
         }
-        return view('web.home',compact("sliders","setting"));
+        $services = HomePage::where('key', 'like','serves%')->orderBy('key')->get();
+        foreach($services as $serve)
+        {
+            $serve->value = json_decode($serve->value);
+        }
+        return view('web.home',compact(["sliders", "services", "setting"]));
+    }
+
+    function projects() {
+        return view('web.projects');
     }
 }
