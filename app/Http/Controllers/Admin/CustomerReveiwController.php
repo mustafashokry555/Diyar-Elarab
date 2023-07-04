@@ -2,12 +2,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Setting;
-use App\Models\Investor;
 use App\Models\CustomerReveiw;
-use App\Models\Team;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\File;
 class CustomerReveiwController extends Controller
 {
     /**
@@ -15,12 +11,8 @@ class CustomerReveiwController extends Controller
      */
     public function index()
     {
-
-        $setting = Setting::find(1);
         $customer_reviews=CustomerReveiw::orderBy('id')->get();
-        // dd($customer_reviews);
-        // , compact('setting')
-        return view('admin.pages.customer_review.index', compact('setting','customer_reviews'));
+        return view('admin.pages.customer_review.index', compact('customer_reviews'));
     }
 
     /**
@@ -28,10 +20,7 @@ class CustomerReveiwController extends Controller
      */
     public function create()
     {
-        $setting = Setting::find(1);
-
-        // , compact('setting')
-        return view('admin.pages.customer_review.add_customer_review', compact('setting'));
+        return view('admin.pages.customer_review.add_customer_review');
     }
 
     /**
@@ -75,9 +64,8 @@ class CustomerReveiwController extends Controller
      */
     public function edit(string $id)
     {
-        // $setting = Setting::find(1);
         // $customer_review = CustomerReveiw::findorFail($id);
-        // return view('admin.pages.customer_review.edit_customer_review', compact('customer_review','setting'));
+        // return view('admin.pages.customer_review.edit_customer_review', compact('customer_review'));
 
     }
 

@@ -9,8 +9,7 @@ use App\Http\Controllers\Controller;
 class SettingController extends Controller
 {
     public function get() {
-        $setting = Setting::find(1);
-        return view('admin.pages.setting', compact('setting'));
+        return view('admin.pages.setting');
     }
 
     public function update(Request $request) {

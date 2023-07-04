@@ -2,7 +2,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Setting;
 use App\Models\Team;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -13,11 +12,8 @@ class TeamController extends Controller
      */
     public function index()
     {
-
-        $setting = Setting::find(1);
         $teams=Team::orderBy('id')->get();
-        // , compact('setting')
-        return view('admin.pages.team.index', compact('setting','teams'));
+        return view('admin.pages.team.index', compact('teams'));
     }
 
     /**
@@ -25,10 +21,7 @@ class TeamController extends Controller
      */
     public function create()
     {
-        $setting = Setting::find(1);
-
-        // , compact('setting')
-        return view('admin.pages.team.add_team', compact('setting'));
+        return view('admin.pages.team.add_team');
     }
 
     /**
@@ -77,10 +70,8 @@ class TeamController extends Controller
      */
     public function edit(string $id)
     {
-        $setting = Setting::find(1);
         $team = Team::findorFail($id);
-        return view('admin.pages.team.edit_team', compact('team','setting'));
-
+        return view('admin.pages.team.edit_team', compact('team'));
     }
 
     /**

@@ -2,9 +2,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Setting;
 use App\Models\Investor;
-use App\Models\Team;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 class InvestorController extends Controller
@@ -14,11 +12,8 @@ class InvestorController extends Controller
      */
     public function index()
     {
-
-        $setting = Setting::find(1);
         $investors=Investor::orderBy('id')->get();
-        // , compact('setting')
-        return view('admin.pages.investor.index', compact('setting','investors'));
+        return view('admin.pages.investor.index', compact('investors'));
     }
 
     /**
@@ -26,10 +21,7 @@ class InvestorController extends Controller
      */
     public function create()
     {
-        $setting = Setting::find(1);
-
-        // , compact('setting')
-        return view('admin.pages.investor.add_investor', compact('setting'));
+        return view('admin.pages.investor.add_investor');
     }
 
     /**
@@ -78,10 +70,8 @@ class InvestorController extends Controller
      */
     public function edit(string $id)
     {
-        $setting = Setting::find(1);
         $investor = Investor::findorFail($id);
-        return view('admin.pages.investor.edit_investor', compact('investor','setting'));
-
+        return view('admin.pages.investor.edit_investor', compact('investor'));
     }
 
     /**
